@@ -1,73 +1,110 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, StatusBar } from 'react-native';
 
-export default function RegisterScreen({ navigation }) {
-  const [name, setName] = useState('');
+export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleRegister = () => {
-    if (name && email && password.length >= 6) {
-      alert('Kayıt başarılı!');
-      navigation.navigate('Login');
+  const handleLogin = () => {
+    if (email && password) {
+      navigation.navigate('Home');
     } else {
-      alert('Lütfen tüm alanları doldurun ve şifre en az 6 karakter olsun.');
+      alert('Lütfen email ve şifre girin');
     }
   };
 
   return (
     <View style={styles.container}>
-      {/* Logo ve Başlık */}
-      <Image source={require('../../assets/crown.png')} style={styles.logo} />
-      <Text style={styles.title}>ChessMaster</Text>
-      <Text style={styles.subtitle}>Yeni hesap oluştur</Text>
+      <StatusBar barStyle="light-content" />
 
-      {/* İsim Input */}
-      <TextInput
-        style={styles.input}
-        placeholder="İsim"
-        value={name}
-        onChangeText={setName}
-      />
+      <View style={styles.header}>
+        <View style={styles.logoCircle}>
+          <Image source={require('../../assets/crown.png')} style={styles.logo} />
+        </View>
+        <Text style={styles.title}>ChessMaster</Text>
+        <Text style={styles.subtitle}>Satranç eğitim uygulaması</Text>
+      </View>
 
-      {/* Email Input */}
-      <TextInput
-        style={styles.input}
-        placeholder="ornek@email.com"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-      />
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Email</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="ornek@email.com"
+          placeholderTextColor="#666"
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+          autoCapitalize="none"
+        />
 
-      {/* Şifre Input */}
-      <TextInput
-        style={styles.input}
-        placeholder="Şifre (min. 6 karakter)"
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-      />
+        <Text style={styles.label}>Şifre</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="........"
+          placeholderTextColor="#666"
+          secureTextEntry
+          value={password}
+          onChangeText={setPassword}
+        />
 
-      {/* Butonlar */}
-      <TouchableOpacity style={styles.registerButton} onPress={handleRegister}>
-        <Text style={styles.registerText}>Kayıt Ol</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+          <Text style={styles.loginText}>Giriş Yap</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Login')}>
-        <Text style={styles.loginText}>Zaten hesabın var mı? Giriş Yap</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.registerButton} onPress={() => navigation.navigate('Register')}>
+          <Text style={styles.registerText}>Kayıt Ol</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' },
-  logo: { width: 80, height: 80, marginBottom: 10 },
-  title: { fontSize: 28, fontWeight: 'bold', color: '#333' },
-  subtitle: { fontSize: 14, color: '#666', marginBottom: 20 },
-  input: { width: '80%', borderWidth: 1, borderColor: '#ccc', borderRadius: 8, padding: 10, marginBottom: 15 },
-  registerButton: { backgroundColor: '#0d47a1', padding: 12, borderRadius: 8, width: '80%', alignItems: 'center', marginBottom: 10 },
-  registerText: { color: '#fff', fontSize: 16, fontWeight: 'bold' },
-  loginButton: { backgroundColor: '#f57c00', padding: 12, borderRadius: 8, width: '80%', alignItems: 'center' },
-  loginText: { color: '#fff', fontSize: 14, fontWeight: 'bold' }
+  container: {
+    flex: 1,
+    backgroundColor: '#121212', // Home ekranıyla uyumlu derin siyah
+    paddingHorizontal: 30,
+    justifyContent: 'center'
+  },
+  header: {
+    alignItems: 'center',
+    marginBottom: 50,
+  },
+  logoCircle: {
+    backgroundColor: '#f57c00', // Turuncu tema rengi
+    padding: 15,
+    borderRadius: 40,
+    marginBottom: 15,
+  },
+  logo: { width: 50, height: 50, tintColor: '#fff' },
+  title: { fontSize: 32, fontWeight: 'bold', color: '#fff' },
+  subtitle: { fontSize: 16, color: '#aaa', marginTop: 5 },
+  inputContainer: { width: '100%' },
+  label: { color: '#fff', marginBottom: 8, fontSize: 14, fontWeight: 'bold' },
+  input: {
+    backgroundColor: '#1e1e24', // Diğer bileşenlerle uyumlu koyu gri
+    color: '#fff',
+    borderRadius: 10,
+    padding: 15,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: '#333'
+  },
+  loginButton: {
+    backgroundColor: '#f57c00', // Ana aksiyon rengi
+    padding: 16,
+    borderRadius: 10,
+    alignItems: 'center',
+    marginBottom: 12
+  },
+  loginText: { color: '#fff', fontSize: 18, fontWeight: 'bold' },
+  registerButton: {
+    backgroundColor: '#1e1e24',
+    padding: 16,
+    borderRadius: 10,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#333'
+  },
+  registerText: { color: '#ccc', fontSize: 16 }
 });
