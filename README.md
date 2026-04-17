@@ -9,3 +9,4 @@ Bu proje React Native kullanılarak geliştirilmiş bir satranç uygulamasıdır
 2. Hafta videosu : https://drive.google.com/file/d/13sBBs60PBtxhX49fRLe9AEGwiKf0AWow/view?usp=drive_link
 3. Hafta videosu : https://drive.google.com/file/d/1TUDY2Y6CIVYVlcSKnTvWVMTuugViziy9/view?usp=sharing
 4. Hafta videosu : https://drive.google.com/file/d/1v8MNY_8WOgeOJv4IlRuLKpV956lov3Cy/view?usp=sharing 
+5. Hafta videosu : https://drive.google.com/file/d/1u1J_ROIPg4rkUo1WnMJ8Do5Kw5LXlYqo/view?usp=sharing

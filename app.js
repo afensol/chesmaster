@@ -7,7 +7,7 @@ import HomeScreen from './src/screens/HomeScreen';
 import LearnScreen from './src/screens/LearnScreen';
 import PuzzleScreen from './src/screens/PuzzleScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
-
+import 'react-native-gesture-handler';
 
 const Stack = createStackNavigator();
 

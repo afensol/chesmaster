@@ -4,9 +4,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView, StatusBar 
 export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
- 
       <StatusBar barStyle="light-content" />
-
 
       <View style={styles.header}>
         <View>
@@ -20,7 +18,6 @@ export default function HomeScreen({ navigation }) {
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
-
 
         <TouchableOpacity
           style={[styles.card, { borderLeftColor: '#f57c00' }]}
@@ -45,7 +42,6 @@ export default function HomeScreen({ navigation }) {
           <Text style={styles.arrow}>→</Text>
         </TouchableOpacity>
 
-
         <TouchableOpacity
           style={[styles.card, { borderLeftColor: '#43a047' }]}
           onPress={() => navigation.navigate('Puzzles')} 
@@ -56,7 +52,6 @@ export default function HomeScreen({ navigation }) {
           </View>
           <Text style={styles.arrow}>→</Text>
         </TouchableOpacity>
-
 
         <TouchableOpacity
           style={[styles.card, { borderLeftColor: '#d81b60' }]}
@@ -105,7 +100,6 @@ const styles = StyleSheet.create({
   title: { fontSize: 24, fontWeight: 'bold', color: '#f57c00' },
   welcomeText: { fontSize: 22, color: '#fff', fontWeight: '600', marginTop: 5 },
   subtitleSmall: { fontSize: 14, color: '#888', marginTop: 4 },
-
   scrollContent: {
     paddingBottom: 30
   },
@@ -118,7 +112,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     marginBottom: 15,
     borderLeftWidth: 5,
-
     elevation: 4,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
