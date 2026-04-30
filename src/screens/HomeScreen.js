@@ -32,8 +32,8 @@ export default function HomeScreen({ navigation }) {
 
 
         <TouchableOpacity
-          style={[styles.card, { borderLeftColor: '#1e88e5' }]}
-          onPress={() => navigation.navigate('Openings')} 
+          style={[styles.card, { borderLeftColor: '#8A2BE2' }]} 
+          onPress={() => navigation.navigate('OpeningList')} 
         >
           <View style={styles.cardInfo}>
             <Text style={styles.buttonText}>Açılış Çalış</Text>
