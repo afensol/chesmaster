@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
-import { OPENINGS } from '../data/openings'; // ../ kullanarak bir üst klasöre çıktık
+import { OPENINGS } from '../data/openings'; 
 
 const OpeningList = ({ navigation }) => {
   const renderItem = ({ item }) => (
