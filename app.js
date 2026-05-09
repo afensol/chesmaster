@@ -10,10 +10,13 @@ import ProfileScreen from './src/screens/ProfileScreen';
 import OpeningList from './src/screens/OpeningList';
 import OpeningDetail from './src/screens/OpeningDetail';
 import 'react-native-gesture-handler';
-
+import database from './src/data/database';
 const Stack = createStackNavigator();
 
 export default function App() {
+  useEffect(() => {
+    database.initDB(); 
+  }, []);
   return (
     <NavigationContainer>
       <Stack.Navigator
