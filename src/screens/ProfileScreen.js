@@ -1,20 +1,30 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, StatusBar } from 'react-native';
 
-export default function ProfileScreen({ navigation }) {
+export default function ProfileScreen({ navigation, route }) {
+  // Login ekranından gönderdiğimiz kullanıcı verisini alıyoruz
+  // Eğer veri gelmezse hata vermemesi için varsayılan değerler atıyoruz
+  const { user } = route.params || { 
+    user: { 
+      username: "Misafir", 
+      email: "kullanici@chessmaster.com" 
+    } 
+  };
+
+  // Kullanıcı adının ilk harfini almak için (Avatar için)
+  const firstLetter = user.username ? user.username.charAt(0).toUpperCase() : "U";
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
       
-
       <View style={styles.profileHeader}>
         <View style={styles.avatarPlaceholder}>
-          <Text style={styles.avatarText}>U</Text>
+          <Text style={styles.avatarText}>{firstLetter}</Text>
         </View>
-        <Text style={styles.userName}>Satranç Ustası</Text>
-        <Text style={styles.userEmail}>kullanici@chessmaster.com</Text>
+        <Text style={styles.userName}>{user.username}</Text>
+        <Text style={styles.userEmail}>{user.email}</Text>
       </View>
-
 
       <View style={styles.statsRow}>
         <View style={styles.statBox}>
@@ -27,7 +37,13 @@ export default function ProfileScreen({ navigation }) {
         </View>
       </View>
 
-      <TouchableOpacity style={styles.logoutButton} onPress={() => navigation.navigate('Login')}>
+      <TouchableOpacity 
+        style={styles.logoutButton} 
+        onPress={() => navigation.reset({
+          index: 0,
+          routes: [{ name: 'Login' }],
+        })}
+      >
         <Text style={styles.logoutText}>Çıkış Yap</Text>
       </TouchableOpacity>
     </View>

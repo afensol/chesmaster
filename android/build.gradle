@@ -10,6 +10,7 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://www.jitpack.io' }
     }
     dependencies {
         classpath("com.android.tools.build:gradle")
@@ -19,3 +20,17 @@ buildscript {
 }
 
 apply plugin: "com.facebook.react.rootproject"
+
+allprojects {
+    configurations.all {
+        resolutionStrategy {
+            force "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+            
+            eachDependency { DependencyResolveDetails details ->
+                if (details.requested.group == 'org.jetbrains.kotlin' && details.requested.name.startsWith('kotlin-stdlib-jre')) {
+                    details.useTarget "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+                }
+            }
+        }
+    }
+}
