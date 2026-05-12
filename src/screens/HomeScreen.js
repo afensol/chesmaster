@@ -79,8 +79,7 @@ export default function HomeScreen({ navigation, route }) {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#121212', paddingTop: 60, paddingHorizontal: 20 },
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 30, paddingBottom: 20, borderBottomWidth: 1, borderBottomColor: '#252a34' },
-  logoCircle: { backgroundColor: '#f57c00', padding: 10, borderRadius: 25, justifyContent: 'center', alignItems: 'center' },
-  logo: { width: 30, height: 30, tintColor: '#fff' },
+  logo: { width: 30, height: 30 },
   title: { fontSize: 24, fontWeight: 'bold', color: '#f57c00' },
   welcomeText: { fontSize: 22, color: '#fff', fontWeight: '600', marginTop: 5 },
   subtitleSmall: { fontSize: 14, color: '#888', marginTop: 4 },

@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#121212', paddingHorizontal: 30, justifyContent: 'center' },
   header: { alignItems: 'center', marginBottom: 50 },
   logoCircle: { backgroundColor: '#f57c00', padding: 15, borderRadius: 40, marginBottom: 15 },
-  logo: { width: 50, height: 50, tintColor: '#fff' },
+  logo: { width: 50, height: 50 },
   title: { fontSize: 32, fontWeight: 'bold', color: '#fff' },
   inputContainer: { width: '100%' },
   input: { backgroundColor: '#1e1e24', color: '#fff', borderRadius: 10, padding: 15, marginBottom: 20, borderWidth: 1, borderColor: '#333' },

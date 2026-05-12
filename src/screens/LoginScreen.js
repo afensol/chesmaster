@@ -71,8 +71,7 @@ export default function LoginScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#1a1a1c', paddingHorizontal: 30, justifyContent: 'center' },
   header: { alignItems: 'center', marginBottom: 40 },
-  logoContainer: { backgroundColor: '#f57c00', padding: 15, borderRadius: 50, marginBottom: 15 },
-  logo: { width: 50, height: 50, tintColor: '#fff' },
+  logo: { width: 50, height: 50 },
   title: { fontSize: 32, fontWeight: 'bold', color: '#fff', letterSpacing: 1 },
   subtitle: { fontSize: 16, color: '#888', marginTop: 5 },
   form: { width: '100%' },
