@@ -1,42 +1,28 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Alert, StatusBar } from 'react-native';
+import database from '../data/database';
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    // --- VERİTABANI GÖRÜNTÜLEME (DEBUG) ---
-    // Bu satır, terminale o ana kadar kayıt olmuş herkesi yazar.
-    console.log("=== Mevcut Kullanıcı Veritabanı (Bellek) ===");
-    console.log(JSON.stringify(global.users, null, 2));
-    console.log("===========================================");
+    try {
+      const user = database.loginUser(email, password);
 
-    // Global hafızadan (RAM) kullanıcıyı çekiyoruz
-    const user = global.users ? global.users[email] : null;
-
-    if (user) {
-      // Kullanıcı bulundu, şifre kontrolü yapalım
-      if (user.password === password) {
-        console.log(`Giriş Başarılı: ${user.username} sisteme girdi.`);
-        // Kullanıcı verisini Home ekranına aktarıyoruz
+      if (user) {
         navigation.navigate('Home', { user: user });
       } else {
-        Alert.alert("Hata", "Şifre yanlış!");
+        Alert.alert("Hata", "Email veya şifre hatalı!");
       }
-    } else {
-      // Kullanıcı bulunamadı
-      Alert.alert(
-        "Hata", 
-        "Bu email ile kayıtlı bir kullanıcı bulunamadı. Lütfen önce kayıt olun."
-      );
+    } catch (error) {
+      Alert.alert("Hata", "Giriş yapılırken bir hata oluştu.");
     }
   };
 
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
-      
       <View style={styles.header}>
         <View style={styles.logoContainer}>
           <Image source={require('../../assets/crown.png')} style={styles.logo} />
@@ -92,7 +78,7 @@ const styles = StyleSheet.create({
   form: { width: '100%' },
   label: { color: '#fff', marginBottom: 8, fontSize: 14, fontWeight: '600' },
   input: { backgroundColor: '#252a34', color: '#fff', borderRadius: 12, padding: 15, marginBottom: 20, borderWidth: 1, borderColor: '#333' },
-  loginButton: { backgroundColor: '#e67e00', padding: 16, borderRadius: 12, alignItems: 'center', marginBottom: 15, elevation: 3 },
+  loginButton: { backgroundColor: '#e67e00', padding: 16, borderRadius: 12, alignItems: 'center', marginBottom: 15 },
   loginText: { color: '#000', fontSize: 18, fontWeight: 'bold' },
   registerButton: { backgroundColor: '#252a34', padding: 16, borderRadius: 12, alignItems: 'center', borderWidth: 1, borderColor: '#333' },
   registerText: { color: '#fff', fontSize: 16, fontWeight: '600' }

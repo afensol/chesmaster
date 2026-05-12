@@ -1,6 +1,5 @@
 import { open } from 'react-native-quick-sqlite';
 
-// Veritabanını açıyoruz
 const db = open({ name: 'ChessMaster.db' });
 
 const database = {
@@ -14,13 +13,13 @@ const database = {
           password TEXT
         );
       `);
-      console.log("Quick-SQLite: Tablo hazır.");
+      console.log("Database initialized");
     } catch (error) {
-      console.error("Tablo oluşturma hatası:", error);
+      console.error("Init error:", error);
     }
   },
 
-  registerUser: async (username, email, password) => {
+  registerUser: (username, email, password) => {
     try {
       const result = db.execute(
         'INSERT INTO Users (username, email, password) VALUES (?, ?, ?)',
@@ -32,14 +31,15 @@ const database = {
     }
   },
 
-  loginUser: async (email, password) => {
+  loginUser: (email, password) => {
     try {
-      const { rows } = db.execute(
+      const result = db.execute(
         'SELECT * FROM Users WHERE email = ? AND password = ?',
         [email, password]
       );
-      if (rows && rows.length > 0) {
-        return rows._array[0]; // Kullanıcıyı dön
+      
+      if (result.rows && result.rows.length > 0) {
+        return result.rows.item(0);
       }
       return null;
     } catch (error) {

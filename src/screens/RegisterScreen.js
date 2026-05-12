@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, StatusBar, Alert } from 'react-native';
+import database from '../data/database';
 
 export default function RegisterScreen({ navigation }) {
   const [username, setUsername] = useState('');
@@ -8,13 +9,14 @@ export default function RegisterScreen({ navigation }) {
 
   const handleRegister = () => {
     if (username && email && password) {
-      // Global bir objeye kaydediyoruz (Kütüphane hatası çıkarmaz)
-      if (!global.users) global.users = {};
-      global.users[email] = { username, email, password };
-      
-      Alert.alert("Başarılı", "Hesabınız oluşturuldu!", [
-        { text: "Tamam", onPress: () => navigation.navigate('Login') }
-      ]);
+      try {
+        database.registerUser(username, email, password);
+        Alert.alert("Başarılı", "Hesabınız veritabanına kaydedildi!", [
+          { text: "Tamam", onPress: () => navigation.navigate('Login') }
+        ]);
+      } catch (error) {
+        Alert.alert("Hata", "Kayıt sırasında bir sorun oluştu.");
+      }
     } else {
       Alert.alert("Hata", "Lütfen tüm alanları doldurun");
     }
@@ -29,10 +31,13 @@ export default function RegisterScreen({ navigation }) {
       </View>
       <View style={styles.inputContainer}>
         <TextInput style={styles.input} placeholder="Kullanıcı Adı" placeholderTextColor="#666" value={username} onChangeText={setUsername} />
-        <TextInput style={styles.input} placeholder="Email" placeholderTextColor="#666" value={email} onChangeText={setEmail} />
+        <TextInput style={styles.input} placeholder="Email" placeholderTextColor="#666" value={email} onChangeText={setEmail} autoCapitalize="none" />
         <TextInput style={styles.input} placeholder="Şifre" secureTextEntry placeholderTextColor="#666" value={password} onChangeText={setPassword} />
         <TouchableOpacity style={styles.loginButton} onPress={handleRegister}>
           <Text style={styles.loginText}>Kayıt Ol</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+           <Text style={{color: '#aaa', textAlign: 'center'}}>Zaten hesabın var mı? Giriş yap</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -45,9 +50,7 @@ const styles = StyleSheet.create({
   logoCircle: { backgroundColor: '#f57c00', padding: 15, borderRadius: 40, marginBottom: 15 },
   logo: { width: 50, height: 50, tintColor: '#fff' },
   title: { fontSize: 32, fontWeight: 'bold', color: '#fff' },
-  subtitle: { fontSize: 16, color: '#aaa', marginTop: 5 },
   inputContainer: { width: '100%' },
-  label: { color: '#fff', marginBottom: 8, fontSize: 14, fontWeight: 'bold' },
   input: { backgroundColor: '#1e1e24', color: '#fff', borderRadius: 10, padding: 15, marginBottom: 20, borderWidth: 1, borderColor: '#333' },
   loginButton: { backgroundColor: '#f57c00', padding: 16, borderRadius: 10, alignItems: 'center', marginBottom: 12 },
   loginText: { color: '#fff', fontSize: 18, fontWeight: 'bold' }

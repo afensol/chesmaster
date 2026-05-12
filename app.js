@@ -2,11 +2,7 @@ import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
-
-// Veritabanı dosyamızı import ediyoruz
 import database from './src/data/database';
-
-// Ekranlarımızı import ediyoruz
 import LoginScreen from './src/screens/LoginScreen';
 import RegisterScreen from './src/screens/RegisterScreen';
 import HomeScreen from './src/screens/HomeScreen';
@@ -20,15 +16,8 @@ const Stack = createStackNavigator();
 
 export default function App() {
   
-  // Uygulama ilk açıldığında çalışacak kısım
   useEffect(() => {
-    try {
-      // Expo SQLite ile hazırladığımız initDB fonksiyonunu çağırıyoruz
-      database.initDB();
-      console.log("ChessMaster: Veritabanı başarıyla başlatıldı.");
-    } catch (error) {
-      console.error("ChessMaster: Veritabanı başlatılırken hata oluştu:", error);
-    }
+    database.initDB();
   }, []);
 
   return (
@@ -39,17 +28,12 @@ export default function App() {
           headerShown: false, 
         }}
       >
-        {/* Giriş ve Kayıt Ekranları */}
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
-        
-        {/* Ana Uygulama Ekranları */}
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Learn" component={LearnScreen} />
         <Stack.Screen name="Puzzles" component={PuzzleScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
-        
-        {/* Başlık (Header) görünen ekranlar */}
         <Stack.Screen 
           name="OpeningList" 
           component={OpeningList} 
@@ -60,7 +44,6 @@ export default function App() {
             headerStyle: { backgroundColor: '#121212' } 
           }} 
         />
-        
         <Stack.Screen 
           name="OpeningDetail" 
           component={OpeningDetail} 
@@ -71,7 +54,6 @@ export default function App() {
             headerStyle: { backgroundColor: '#121212' } 
           }} 
         />
-
       </Stack.Navigator>
     </NavigationContainer>
   );
