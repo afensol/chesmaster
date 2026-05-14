@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView, StatusBar } from 'react-native';
 
-// route parametresini ekledik, Login'den gelen veriyi buradan alacağız
+
 export default function HomeScreen({ navigation, route }) {
   
-  // LoginScreen'den gelen kullanıcı verisini alıyoruz
+
   const { user } = route.params || { user: { username: "Misafir" } };
 
   return (
@@ -14,7 +14,7 @@ export default function HomeScreen({ navigation, route }) {
       <View style={styles.header}>
         <View>
           <Text style={styles.title}>ChessMaster</Text>
-          {/* Kullanıcı adını dinamik yaptık */}
+
           <Text style={styles.welcomeText}>Hoş Geldin, {user.username}! 👋</Text>
           <Text style={styles.subtitleSmall}>Bugün ne öğrenmek istersin?</Text>
         </View>
@@ -75,7 +75,7 @@ export default function HomeScreen({ navigation, route }) {
   );
 }
 
-// Styles kısmı sende olanla aynı kalabilir...
+
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#121212', paddingTop: 60, paddingHorizontal: 20 },
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 30, paddingBottom: 20, borderBottomWidth: 1, borderBottomColor: '#252a34' },

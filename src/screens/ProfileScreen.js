@@ -2,8 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, StatusBar } from 'react-native';
 
 export default function ProfileScreen({ navigation, route }) {
-  // Login ekranından gönderdiğimiz kullanıcı verisini alıyoruz
-  // Eğer veri gelmezse hata vermemesi için varsayılan değerler atıyoruz
+
   const { user } = route.params || { 
     user: { 
       username: "Misafir", 
@@ -11,7 +10,7 @@ export default function ProfileScreen({ navigation, route }) {
     } 
   };
 
-  // Kullanıcı adının ilk harfini almak için (Avatar için)
+
   const firstLetter = user.username ? user.username.charAt(0).toUpperCase() : "U";
 
   return (
